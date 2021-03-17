@@ -24,7 +24,7 @@ CREATE TABLE CLASSTBL
     `MEM_CODE`      INT            NULL        COMMENT '회원번호', 
     `CLS_PRICE`     INT            NULL        COMMENT '가격', 
     `CLS_TIME`      TIME           NULL        COMMENT '강의재생시간', 
-    `CLS_DATE`      DATE           NULL        COMMENT '강의기간', 
+    `CLS_PERIOD`    DATE           NULL        COMMENT '강의기간', 
     PRIMARY KEY (CLS_CODE)
 );
 
