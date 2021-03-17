@@ -1,0 +1,47 @@
+*외래키 사용 컬럼은 0F0으로 표시
+Ex. BFM일 경우 BOARD에서 쓰이는 MEMBER테이블의 컬럼
+
+@회원테이블 MEMBER
+MEM_ID -아이디 (중복체크)
+MEM_PW -비밀번호
+MEM_NAME -이름
+MEM_PHONE -전화번호
+MEM_EMAIL -이메일
+MEM_CODE -회원번호(PK)
+MEM_ACCESS -권한 (관리자:0, 강사:1, 수강생:2)
+MEM_DATE -가입일
+MEM_STATUS -탈퇴 여부(회원 ture 탈퇴한회원 false)
+
+@강의 CLASSTBL
+CLS_CODE -강의코드 (PK)
+CLS_CATEGORY -강의분류(요리 COOK등등)
+CLS_NAME -강의명
+*CFM_CODE -강사번호 (FK - 회원 테이블; 회원번호)
+CLS_PRICE -가격
+CLS_TIME -강의재생시간
+CLS_PERIOD -강의기간
+
+@주문 ORDERTBL
+ORD_CODE -주문번호 (PK)
+*OFM_CODE -회원번호 (FK - 회원 테이블; 회원번호)
+*OFC_CODE -강의코드 (FK - 강의 테이블; 강의번호)
+ORD_DATE -주문날짜
+ORD_TOTAL -주문금액
+ORD_CANCEL -주문취소 여부
+
+@게시판 BOARDTBL
+BRD_NUM -글번호 (PK)
+BRD_TITLE -글제목
+BRD_HIT -조회수
+BRD_DATE -작성일
+BRD_CONTENT -글내용
+*BFM_CODE -회원번호 (FK - 회원 테이블; 회원번호)
+*BFC_CODE -강의코드 (FK - 강의 테이블; 강의코드)
+BRD_CATEGORY -말머리 (공지 0/리뷰 1/질답 2 /자유 3)
+BRD_DELETE -삭제여부
+BRD_RATING -강의평점 (5아주만족~1불만족)
+
+++진행상황따라 추가
+BRD_MODIFIEDDATE -수정일
+BRD_DELETEDATE -삭제일
+평점평균 구현
