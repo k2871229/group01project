@@ -8,7 +8,7 @@ CREATE TABLE MEMBER
     `MEM_CODE`    VARCHAR(45)    NOT NULL    COMMENT '회원번호', 
     `MEM_ACCESS`  TINYINT        NOT NULL    COMMENT '권한', 
     `MEM_DATE`    DATE           NULL        COMMENT '가입일', 
-    `MEM_STATUS`  BLOB           NULL        COMMENT '탈퇴여부', 
+    `MEM_STATUS`  TINYINT        NULL        COMMENT '탈퇴여부', 
     PRIMARY KEY (MEM_CODE)
 );
 
