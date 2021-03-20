@@ -2,7 +2,8 @@
 <html lang="ko">
 <head>
 
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
@@ -36,16 +37,28 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
           </ol>
           <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="First slide">
+            <a class="big_main" href="#">
+              		<img class="d-block img-fluid" src="./resources/img/ITmain.png" alt="First slide">
+            </a>
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="Second slide">
+            <a class="big_main" href="#">
+              <img class="d-block img-fluid" src="./resources/img/ARTmain.png" alt="Second slide">
+            </a>
             </div>
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/1200x350" alt="Third slide">
+            <a class="big_main" href="#">
+              <img class="d-block img-fluid" src="./resources/img/MUSICmain.png" alt="Third slide">
+            </a>
+            </div>
+            <div class="carousel-item">
+            <a class="big_main" href="#">
+              <img class="d-block img-fluid" src="./resources/img/COOKmain.png" alt="Fourth slide">
+            </a>
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -62,13 +75,46 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="#"><img class="card-img-top" src="./resources/img/cook1.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item One</a>
+                  <a href="#" style="color: black">삶의 요령이 쌓이는 반찬 요리</a>
                 </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                <h5>240,380원</h5>
+                <p class="card-text">입문자분들을 위한 채소를 남김없이 활용하는 반찬요리 클래스입니다.
+                </p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9733;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="./resources/img/it1.png" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">파이썬 정복!</a>
+                </h4>
+                <h5>432,180원</h5>
+                <p class="card-text">파이썬을 기초부터 하나씩 알려드리는 강좌. 초보자용 코스입니다.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="./resources/img/cook2.png" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="#">5성 호텔 쉐프가 알려주는 제빵 클래스</a>
+                </h4>
+                <h5>280,000원</h5>
+                <p class="card-text">5성 라라호텔에 근무하던 쉐프 최라라씨가 하나씩 알려주는 디저트 만들기 팁을 전수해드립니다.
                 </p>
               </div>
               <div class="card-footer">
@@ -79,30 +125,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="#"><img class="card-img-top" src="./resources/img/music1.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Two</a>
+                  <a href="#">솨솨 선생님과 함께, 작곡 클래스</a>
                 </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                  Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Three</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                <h5>357,680원</h5>
+                <p class="card-text">작곡이 취미가 되는 시간을 선사합니다.
                 </p>
               </div>
               <div class="card-footer">
@@ -113,14 +142,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="#"><img class="card-img-top" src="./resources/img/art1.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Four</a>
+                  <a href="#">손으로 그리고 만드는 수채화 클래스</a>
                 </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                </p>
+                <h5>567,000원</h5>
+                <p class="card-text">재미있는 수채화 드로잉, 밑선 긋기부터 알려드려요!</p>
               </div>
               <div class="card-footer">
                 <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -130,30 +158,13 @@
 
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+              <a href="#"><img class="card-img-top" src="./resources/img/art2.png" alt=""></a>
               <div class="card-body">
                 <h4 class="card-title">
-                  <a href="#">Item Five</a>
+                  <a href="#">리얼리티 아이패드 드로잉</a>
                 </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
-                  Lorem ipsum dolor sit amet.</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Item Six</a>
-                </h4>
-                <h5>$24.99</h5>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!
+                <h5>530,000원</h5>
+                <p class="card-text">아이패드로 그림을 그리기 위해 필요한 어플들과 그리는 팁들을 전수합니다.
                 </p>
               </div>
               <div class="card-footer">
