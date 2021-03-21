@@ -3,10 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="dao.ClassMapper">
+<mapper namespace="dao.ClassDAO">
 
     
-     <resultMap id="ClassResult" type="Class">
+     <resultMap id="ClassResult" type="dto.ClassDTO">
      <id property="cls_code" column="CLS_CODE" />
      <result property="cls_category" column="CLS_CATEGORY" />
      <result property="cls_name" column="CLS_NAME" />
@@ -17,16 +17,16 @@
      
      </resultMap>
 	         
-    <select id="selectClassList" parameterType="Class" resultMap="ClassResult">
+    <select id="selectClassList" parameterType="dto.ClassDTO" resultMap="ClassResult">
     SELECT * FROM studyingp.classtbl
     </select>
 
-	<select id="selectClassOne" parameterType="Class" resultType="dto.Class">
+	<select id="selectClassOne" parameterType="dto.ClassDTO" resultType="dto.ClassDTO">
  	SELECT * FROM studyingp.boardtbl
 	WHERE CLS_CODE = #{CLS_CODE}
  	</select>
 
-	<insert id="insertClass" parameterType="Class">
+	<insert id="insertClass" parameterType="dto.ClassDTO">
      INSERT INTO studyingp.classtbl
      (CLS_CODE, CLS_CATEGORY, CLS_NAME, MEM_CODE, CLS_PRICE,
      CLS_TIME, CLS_PERIOD)
@@ -36,7 +36,7 @@
     </insert>
      
           
-    <update id="updateClass" parameterType="Class">
+    <update id="updateClass" parameterType="dto.ClassDTO">
     UPDATE studyingp.classtbl
     SET
     CLS_CODE = #{CLS_CODE},
@@ -50,7 +50,7 @@
     </update>
  
  
-    <delete id="deleteClass" parameterType="Class">
+    <delete id="deleteClass" parameterType="dto.ClassDTO">
     DELETE FROM studyingp.classtbl
     WHERE CLS_CODE = #{CLS_CODE}
     </delete>

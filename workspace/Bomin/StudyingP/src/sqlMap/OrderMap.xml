@@ -3,10 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="dao.Order.Mapper">
+<mapper namespace="dao.OrderDAO">
      
     
-     <resultMap id="OrderResult" type="Order">
+     <resultMap id="OrderResult" type="dto.OrderDTO">
      <id property="ord_code" column="ORD_CODE" />
      <result property="mem_code" column="MEM_CODE" />
      <result property="cls_code" column="CLS_CODE" />
@@ -16,16 +16,16 @@
      </resultMap>
 	     
      
-    <select id="selectOrderList" parameterType="Order" resultMap="OrderResult">
+    <select id="selectOrderList" parameterType="dto.OrderDTO" resultMap="OrderResult">
     SELECT * FROM studyingp.ordertbl
      </select>
 
-	<select id="selectOrderOne" parameterType="Order" resultType="dto.Order">
+	<select id="selectOrderOne" parameterType="dto.OrderDTO" resultType="dto.OrderDTO">
     SELECT * FROM studyingp.ordertbl
     WHERE ORD_CODE = #{ORD_CODE}
  	</select>
      
-     <insert id="insertOrder" parameterType="Order">
+     <insert id="insertOrder" parameterType="dto.OrderDTO">
      INSERT INTO studyingp.ordertbl
      (ORD_CODE, MEM_CODE, CLS_CODE, ORD_DATE,
      ORD_TOTAL,ORD_CANCEL)
@@ -34,7 +34,7 @@
      #{ORD_DATE}, #{ORD_TOTAL}, #{ORD_CANCEL})
     </insert>
      
-    <update id="updateOrder" parameterType="Order">
+    <update id="updateOrder" parameterType="dto.OrderDTO">
     UPDATE studyingp.ordertbl
     SET
     ORD_CODE = #{ORD_CODE},
@@ -47,7 +47,7 @@
     </update>
  
  
-    <delete id="deleteOrder" parameterType="Order">
+    <delete id="deleteOrder" parameterType="dto.OrderDTO">
     DELETE FROM studyingp.ordertbl
     WHERE ORD_CODE = #{ORD_CODE}
     </delete>

@@ -1,19 +1,22 @@
 package dto;
 
-public class Class {
+import java.sql.*;
+
+
+public class ClassDTO {
 
 	  private  int cls_code = 0; 
 	  private String cls_category = null; 
 	  private String cls_name = null;
 	  private int mem_code = 0; 
 	  private int cls_price = 0; 
-	  private String cls_time = null;
+	  private Time cls_time = null;
 	  private String cls_period = null; 
 	  
-	public Class() {
+	public ClassDTO() {
 		super();
 	}
-	public Class(int cls_code, String cls_category, String cls_name, int mem_code, int cls_price, String cls_time,
+	public ClassDTO(int cls_code, String cls_category, String cls_name, int mem_code, int cls_price, Time cls_time,
 			String cls_period) {
 		super();
 		this.cls_code = cls_code;
@@ -55,10 +58,10 @@ public class Class {
 	public void setCls_price(int cls_price) {
 		this.cls_price = cls_price;
 	}
-	public String getCls_time() {
+	public Time getCls_time() {
 		return cls_time;
 	}
-	public void setCls_time(String cls_time) {
+	public void setCls_time(Time cls_time) {
 		this.cls_time = cls_time;
 	}
 	public String getCls_period() {

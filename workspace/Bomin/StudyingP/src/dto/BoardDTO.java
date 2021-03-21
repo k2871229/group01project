@@ -1,12 +1,14 @@
 package dto;
 
-public class Board {
+import java.sql.*;
+
+public class BoardDTO {
 
 
     private int brd_num = 0;
     private String brd_title = null; 
     private int brd_hit = 0; 
-    private String brd_date = null;
+    private Date brd_date = null;
     private String brd_content = null;
     private int mem_code = 0;
     private int cls_code = 0;
@@ -14,11 +16,11 @@ public class Board {
     private int brd_delete = 0;
     private int brd_rating = 0;
     
-	public Board() {
+	public BoardDTO() {
 		super();
 	}
 	
-	public Board(int brd_num, String brd_title, int brd_hit, String brd_date, String brd_content, int mem_code,
+	public BoardDTO(int brd_num, String brd_title, int brd_hit, Date brd_date, String brd_content, int mem_code,
 			int cls_code, int brd_category, int brd_delete, int brd_rating) {
 		super();
 		this.brd_num = brd_num;
@@ -51,10 +53,10 @@ public class Board {
 	public void setBrd_hit(int brd_hit) {
 		this.brd_hit = brd_hit;
 	}
-	public String getBrd_date() {
+	public Date getBrd_date() {
 		return brd_date;
 	}
-	public void setBrd_date(String brd_date) {
+	public void setBrd_date(Date brd_date) {
 		this.brd_date = brd_date;
 	}
 	public String getBrd_content() {
