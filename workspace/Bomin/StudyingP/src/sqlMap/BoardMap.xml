@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="dao.BoardMapper">
+<mapper namespace="dao.BoardDAO">
      
-     <resultMap id="BoardResult" type="Board">
+     <resultMap id="BoardResult" type="dto.BoardDTO">
      <id property="brd_num" column="BRD_NUM" />
      <result property="brd_title" column="BRD_TITLE" />
      <result property="brd_hit" column="BRD_HIT" />
@@ -19,16 +19,16 @@
      </resultMap>
 	     
 	    
-    <select id="selectBoardList" parameterType="Board" resultMap="BoardResult">
+    <select id="selectBoardList" parameterType="dto.BoardDTO" resultMap="BoardResult">
 	SELECT * FROM studyingp.boardtbl
 	</select>
 	
-	<select id="selectBoardOne" parameterType="Board" resultType="dto.Board">
+	<select id="selectBoardOne" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
  	SELECT * FROM studyingp.boardtbl
 	WHERE BRD_NUM = #{BRD_NUM}
  	</select>
      
-     <insert id="insertBoard" parameterType="Board">
+     <insert id="insertBoard" parameterType="dto.BoardDTO">
      INSERT INTO studyingp.boardtbl
      (BRD_NUM, BRD_TITLE, BRD_HIT, BRD_DATE, BRD_CONTENT,
      MEM_CODE, CLS_CODE, BRD_CATEGORY, BRD_DELETE, BRD_RATING)
@@ -39,7 +39,7 @@
     </insert>
      
      
-    <update id="updateBoard" parameterType="Board">
+    <update id="updateBoard" parameterType="dto.BoardDTO">
      UPDATE studyingp.boardtbl
      SET
      BRD_NUM = #{BRD_NUM}, BRD_TITLE = #{BRD_TITLE},
@@ -52,7 +52,7 @@
     </update>
  
  
-    <delete id="deleteBoard" parameterType="Board">
+    <delete id="deleteBoard" parameterType="dto.BoardDTO">
      
         DELETE FROM studyingp.boardtbl
         WHERE BRD_NUM = #{BRD_NUM}

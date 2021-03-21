@@ -1,6 +1,8 @@
 package dto;
 
-public class Member {
+import java.sql.*;
+
+public class MemberDTO {
 
     private int mem_code = 0;
     private String mem_id = null;
@@ -9,15 +11,15 @@ public class Member {
     private String mem_phone = null;
     private String mem_email = null;
     private int mem_access = 0;
-    private String mem_date = null;
+    private Date mem_date = null;
     private int mem_status = 0;
         
-	public Member() {
+	public MemberDTO() {
 		super();
 	}
 	
-	public Member(int mem_code, String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_email,
-			int mem_access, String mem_date, int mem_status) {
+	public MemberDTO(int mem_code, String mem_id, String mem_pw, String mem_name, String mem_phone, String mem_email,
+			int mem_access, Date mem_date, int mem_status) {
 		super();
 		this.mem_code = mem_code;
 		this.mem_id = mem_id;
@@ -73,10 +75,10 @@ public class Member {
 	public void setMem_access(int mem_access) {
 		this.mem_access = mem_access;
 	}
-	public String getMem_date() {
+	public Date getMem_date() {
 		return mem_date;
 	}
-	public void setMem_date(String mem_date) {
+	public void setMem_date(Date mem_date) {
 		this.mem_date = mem_date;
 	}
 	public int getMem_status() {

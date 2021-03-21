@@ -1,11 +1,14 @@
 package dto;
 
-public class Order {
+import java.sql.*;
+
+
+public class OrderDTO {
 
 	 private int ord_code = 0;
 	 private int mem_code = 0;
 	 private int cls_code = 0;
-	 private String ord_date = null; 
+	 private Date ord_date = null; 
 	 private int ord_total = 0;
 	 private int ord_cancel = 0;
 	 
@@ -28,10 +31,10 @@ public class Order {
 	public void setCls_code(int cls_code) {
 		this.cls_code = cls_code;
 	}
-	public String getOrd_date() {
+	public Date getOrd_date() {
 		return ord_date;
 	}
-	public void setOrd_date(String ord_date) {
+	public void setOrd_date(Date ord_date) {
 		this.ord_date = ord_date;
 	}
 	public int getOrd_total() {

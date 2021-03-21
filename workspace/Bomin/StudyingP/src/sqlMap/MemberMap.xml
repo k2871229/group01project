@@ -3,9 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="dao.MemberMapper">
+<mapper namespace="dao.MemberDAO">
    
-     <resultMap id="MemberResult" type="Member">
+     <resultMap id="MemberResult" type="dto.MemberDTO">
      <id property="mem_code" column="MEM_CODE" />
      <result property="mem_id" column="MEM_ID" />
      <result property="mem_pw" column="MEM_PW" />
@@ -18,16 +18,16 @@
      </resultMap>
   	     
      
-    <select id="selectMemberList" parameterType="Member" resultMap="MemberResult">
+    <select id="selectMemberList" parameterType="dto.MemberDTO" resultMap="MemberResult">
     SELECT * FROM studyingp.membertbl
      </select>
      
-	<select id="selectMemberOne" parameterType="Member" resultType="dto.Member">
+	<select id="selectMemberOne" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
  	SELECT * FROM studyingp.membertbl
     WHERE MEM_CODE = #{MEM_CODE}
  	</select>
      
-     <insert id="insertMember" parameterType="Member">
+     <insert id="insertMember" parameterType="dto.MemberDTO">
      INSERT INTO studyingp.membertbl
      (MEM_CODE, MEM_ID, MEM_PW, MEM_NAME, MEM_PHONE,
      MEM_EMAIL, MEM_ACCESS, MEM_DATE, MEM_STATUS)
@@ -38,7 +38,7 @@
     </insert>
 
      
-    <update id="updateMember" parameterType="Member">
+    <update id="updateMember" parameterType="dto.MemberDTO">
     UPDATE studyingp.membertbl
     SET
     MEM_CODE = #{MEM_CODE}, MEM_ID = #{MEM_ID},
@@ -50,7 +50,7 @@
     </update>
  
  
-    <delete id="deleteMember" parameterType="Member">
+    <delete id="deleteMember" parameterType="dto.MemberDTO">
     DELETE FROM studyingp.membertbl
     WHERE MEM_CODE = #{MEM_CODE}
     </delete>

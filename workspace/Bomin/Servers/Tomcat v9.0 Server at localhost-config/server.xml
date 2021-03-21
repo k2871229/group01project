@@ -155,7 +155,7 @@
 
       
       
-	<Context docBase="StudioP" path="/StudioP" reloadable="true" source="org.eclipse.jst.jee.server:StudioP"/></Host>
+	<Context docBase="StudyingP" path="/StudyingP" reloadable="true" source="org.eclipse.jst.jee.server:StudyingP"/></Host>
     </Engine>
   </Service>
 </Server>
