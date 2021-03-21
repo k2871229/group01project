@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dao.ClassMapper">
+
+    
+     <resultMap id="ClassResult" type="Class">
+     <id property="cls_code" column="CLS_CODE" />
+     <result property="cls_category" column="CLS_CATEGORY" />
+     <result property="cls_name" column="CLS_NAME" />
+     <result property="mem_code" column="MEM_CODE" />
+     <result property="cls_price" column="CLS_PRICE" />
+     <result property="cls_time" column="CLS_TIME" />
+     <result property="cls_period" column="CLS_PERIOD" />
+     
+     </resultMap>
+	         
+    <select id="selectClassList" parameterType="Class" resultMap="ClassResult">
+    SELECT * FROM studyingp.classtbl
+    </select>
+
+	<select id="selectClassOne" parameterType="Class" resultType="dto.Class">
+ 	SELECT * FROM studyingp.boardtbl
+	WHERE CLS_CODE = #{CLS_CODE}
+ 	</select>
+
+	<insert id="insertClass" parameterType="Class">
+     INSERT INTO studyingp.classtbl
+     (CLS_CODE, CLS_CATEGORY, CLS_NAME, MEM_CODE, CLS_PRICE,
+     CLS_TIME, CLS_PERIOD)
+     VALUES
+     (#{CLS_CODE}, #{CLS_CATEGORY}, #{CLS_NAME}, #{MEM_CODE},
+     #{CLS_PRICE}, #{CLS_TIME}, #{CLS_PERIOD})
+    </insert>
+     
+          
+    <update id="updateClass" parameterType="Class">
+    UPDATE studyingp.classtbl
+    SET
+    CLS_CODE = #{CLS_CODE},
+    CLS_CATEGORY = #{CLS_CATEGORY},
+    CLS_NAME = #{CLS_NAME},
+    MEM_CODE = #{MEM_CODE},
+    CLS_PRICE = #{CLS_PRICE},
+    CLS_TIME = #{CLS_TIME},
+    CLS_PERIOD = #{CLS_PERIOD}
+    WHERE CLS_CODE = #{CLS_CODE}
+    </update>
+ 
+ 
+    <delete id="deleteClass" parameterType="Class">
+    DELETE FROM studyingp.classtbl
+    WHERE CLS_CODE = #{CLS_CODE}
+    </delete>
+
+ 
+</mapper>

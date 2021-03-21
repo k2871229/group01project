@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="dao.BoardMapper">
+     
+     <resultMap id="BoardResult" type="Board">
+     <id property="brd_num" column="BRD_NUM" />
+     <result property="brd_title" column="BRD_TITLE" />
+     <result property="brd_hit" column="BRD_HIT" />
+     <result property="brd_date" column="BRD_DATE" />
+     <result property="brd_content" column="BRD_CONTENT" />
+     <result property="mem_code" column="MEM_CODE" />
+     <result property="cls_code" column="CLS_CODE" />
+     <result property="brd_category" column="BRD_CATEGORY" />
+     <result property="brd_delete" column="BRD_DELETE" />
+     <result property="brd_rating" column="BRD_RATING" />
+     </resultMap>
+	     
+	    
+    <select id="selectBoardList" parameterType="Board" resultMap="BoardResult">
+	SELECT * FROM studyingp.boardtbl
+	</select>
+	
+	<select id="selectBoardOne" parameterType="Board" resultType="dto.Board">
+ 	SELECT * FROM studyingp.boardtbl
+	WHERE BRD_NUM = #{BRD_NUM}
+ 	</select>
+     
+     <insert id="insertBoard" parameterType="Board">
+     INSERT INTO studyingp.boardtbl
+     (BRD_NUM, BRD_TITLE, BRD_HIT, BRD_DATE, BRD_CONTENT,
+     MEM_CODE, CLS_CODE, BRD_CATEGORY, BRD_DELETE, BRD_RATING)
+     VALUES
+     (#{BRD_NUM}, #{BRD_TITLE}, #{BRD_HIT}, #{BRD_DATE},
+     #{BRD_CONTENT}, #{MEM_CODE}, #{CLS_CODE}, #{BRD_CATEGORY},
+     #{BRD_DELETE}, #{BRD_RATING})
+    </insert>
+     
+     
+    <update id="updateBoard" parameterType="Board">
+     UPDATE studyingp.boardtbl
+     SET
+     BRD_NUM = #{BRD_NUM}, BRD_TITLE = #{BRD_TITLE},
+     BRD_HIT = #{BRD_HIT}, BRD_DATE = #{BRD_DATE},
+     BRD_CONTENT = #{BRD_CONTENT}, MEM_CODE = #{MEM_CODE},
+     CLS_CODE = #{CLS_CODE}, BRD_CATEGORY = #{BRD_CATEGORY},
+     BRD_DELETE = #{BRD_DELETE}, BRD_RATING = #{BRD_RATING}
+     WHERE BRD_NUM = #{BRD_NUM}
+
+    </update>
+ 
+ 
+    <delete id="deleteBoard" parameterType="Board">
+     
+        DELETE FROM studyingp.boardtbl
+        WHERE BRD_NUM = #{BRD_NUM}
+
+    </delete>
+
+ 
+</mapper>
