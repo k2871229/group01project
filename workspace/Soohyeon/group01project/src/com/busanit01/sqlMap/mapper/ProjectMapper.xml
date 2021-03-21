@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.busanit01.sqlMap.mapper.ProjectMapper">
+
+	<!-- MEMBERTBL 쿼리 -->
+
+	<!-- 회원 모두 조회 -->
+	<select id="selectMemberAll" resultType="com.busanit01.dto.MemberDTO">
+	
+		SELECT * FROM MEMBERTBL
+	
+	</select>
+	
+	<!-- 회원 한 명 조회 -->
+	<select id="selectMemberOne" parameterType="com.busanit01.dto.MemberDTO" resultType="com.busanit01.dto.MemberDTO">
+	
+		SELECT * FROM MEMBERTBL WHERE MEM_CODE = #{mem_code} AND MEM_ID = #{mem_id}
+	
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="insertMember" parameterType="com.busanit01.dto.MemberDTO">
+	
+		INSERT INTO MEMBERTBL ( MEM_ID, MEM_PW, MEM_NAME, MEM_PHONE, MEM_EMAIL, MEM_ACCESS, MEM_DATE, MEM_STATUS )
+		VALUES ( #{mem_id}, #{mem_pw}, #{mem_name}, #{mem_phone}, #{mem_email}, #{mem_access}, SYSDATE(), 1 )
+	
+	</insert>
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember" parameterType="com.busanit01.dto.MemberDTO">
+	
+		UPDATE MEMBERTBL SET MEM_PW = #{mem_pw}, MEM_NAME = #{mem_name}, MEM_PHONE = #{mem_phone}, MEM_EMAIL = #{mem_email}
+		WHERE MEM_CODE = #{mem_code} AND MEM_ID = #{mem_id}
+	
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="deleteMember" parameterType="com.busanit01.dto.MemberDTO">
+	
+		UPDATE MEMBERTBL SET MEM_STATUS = 0
+		WHERE MEM_CODE = #{mem_code} AND MEM_ID = #{mem_id}
+	
+	</update>
+	
+	<!---->
+	
+</mapper>
