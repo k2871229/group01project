@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlMap.mapper.ClassMapper">
+
+	<!-- CLASSTBL 쿼리 -->
+	<!-- CLS_DELETE = 0 이면 삭제 -->
+	
+	<!-- 강의 전체 조회 -->
+	<select id="selectClassAll" resultType="dto.ClassDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			CLASSTBL 
+		WHERE 
+			CLS_DELETE = 1
+	
+	</select>
+
+	<!-- 강의 조회 (강의코드) -->
+	<select id="selectClassCode" parameterType="dto.ClassDTO" resultType="dto.ClassDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			CLASSTBL 
+		WHERE 
+			CLS_CODE = #{cls_code} AND CLS_DELETE = 1
+	
+	</select>
+	
+	<!-- 강의 조회 (강의명) -->
+	<select id="selectClassName" parameterType="dto.ClassDTO" resultType="dto.ClassDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			CLASSTBL 
+		WHERE 
+			CLS_NAME = #{cls_name} AND CLS_DELETE = 1
+	
+	</select>
+	
+	<!-- 강의 조회 (강사명) -->
+	<select id="selectClassTeacher" parameterType="dto.MemberDTO" resultType="dto.ClassDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			CLASSTBL 
+		INNER JOIN 
+			MEMBERTBL 
+		ON 
+			CLASSTBL.MEM_CODE = MEMBERTBL.MEM_CODE 
+		WHERE 
+			MEMBERTBL.MEM_NAME = #{mem_name} AND CLASSTBL.CLS_DELETE = 1
+	
+	</select>
+	
+	<!-- 강의 조회 (카테고리) -->
+	<select id="selectClassCategory" parameterType="dto.ClassDTO" resultType="dto.ClassDTO" >
+	
+		SELECT
+			*
+		FROM
+			CLASSTBL
+		WHERE
+			CLS_CATEGORY = #{cls_category} AND CLS_DELETE = 1
+	
+	</select>
+	
+	
+	<!-- 강의 개설 -->
+	<insert id="insertClass" parameterType="dto.ClassDTO">
+	
+		INSERT INTO
+			CLASSTBL (CLS_CATEGORY, CLS_NAME, MEM_CODE, CLS_PRICE, CLS_TIME, CLS_PERIOD, CLS_DELETE) 
+		VALUES
+			(#{cls_category}, #{cls_name}, #{mem_code}, #{cls_price}, #{cls_time}, DATE_ADD(NOW(), INTERVAL 6 MONTH), 1)
+	
+	</insert>
+	
+	<!-- 강의 수정 -->
+	<update id="updateClass" parameterType="dto.ClassDTO">
+	
+		UPDATE 
+			CLASSTBL
+		SET
+			CLS_CATEGORY = #{cls_category},
+			CLS_NAME = #{cls_name},
+			MEM_CODE = #{mem_code},
+			CLS_PRICE = #{cls_price},
+			CLS_TIME = #{cls_time},
+			CLS_PERIOD = #{cls_period}
+		WHERE
+			CLS_CODE = #{cls_code}
+	
+	</update>
+	
+	<!-- 강의 삭제 -->
+	<update id="deleteClass" parameterType="dto.ClassDTO">
+	
+		UPDATE
+			CLASSTBL
+		SET
+			CLS_DELETE = 0
+		WHERE
+			CLS_CODE = #{cls_delete}
+	
+	</update>
+
+</mapper>

@@ -1,0 +1,65 @@
+마이바티스 사용법
+
+먼저 마이바티스를 사용하기 위해 Config 파일을 설정한다
+
+src.Config 패키지를 살펴보면
+
+SqlSessionManager.java와 Mybatis-Config.xml이 있다
+
+SqlSessionManager의 경우 현재 Mybatis-Config.xml과 연결되어 있으므로 수정할 필요가 없다
+
+중요한 것은 Mybatis-Config.xml 파일로 매퍼파일 설정, 드라이버 설정 등이 들어있다
+
+수정해야할 부분은 Mybatis-Config.xml 내부의
+
+<property name="url" value="jdbc:mysql://localhost:3306/board"/>
+<property name="username" value="root"/>
+<property name="password" value="mi58521651"/>
+
+이다
+
+1) url에서 localhost 뒤의 숫자와 schema는 본인이 MySQL에 생성한 포트번호와 스키마 명을 입력한다
+2) username은 해당 스키마에 로그인하는 아이디
+3) password는 해당 스키마에 로그인하는 비밀번호이다
+
+아래 매퍼 리소스는 경로가 바뀌지 않는 이상 수정할 필요가 없다
+
+
+
+다음은 실제로 사용하는 방법이다
+
+index.jsp파일을 참고하자
+
+여기서 중요한 것은
+
+SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
+SqlSession sqlSession = sqlSessionFactory.openSession();
+
+이 두 줄 코드로 해당 코드가 jsp 내부에 작성되어야 마이바티스를 사용할 수 있다
+
+try 구문 내부를 보면
+
+memberList = sqlSession.selectList("sqlMap.mapper.MemberMapper.selectMemberAll");
+
+이렇게 작성되어있는데 이 문장을 뜯어보자
+
+먼저 "sqlMap.mapper.MemberMapper.selectMemberAll" 는 다음과 같은 구조로 작성된 것이다.
+
+"경로.매퍼파일이름.쿼리id"
+
+풀어서 설명하면 sqlMap.mapper 패키지 내의
+
+MemberMapper.xml 파일 안에 있는 id="selectMemberAll" 이란 쿼리를 사용하겠다는 의미이다
+
+selectList는 sqlSession 인스턴스 내부의 메소드로 여러개의 행 데이터를 받아올 때 사용한다
+
+만약 단일 행을 받아올 경우 selectOne을 사용하면 된다. 이때 단일 행은 조건이 필요하므로
+
+경로를 나타내는 문장 뒤에 조건을 써주면 된다
+
+마지막으로 정상적으로 데이터를 받아왔는지 확인하기 위해 p태그 등으로 출력을 확인하면 된다
+
+insert, update도 기본적인 방식은 동일하다
+
+다만 다른 점은 sqlSession.insert, sqlSession.update와 같이 사용한다는 점이다
+
