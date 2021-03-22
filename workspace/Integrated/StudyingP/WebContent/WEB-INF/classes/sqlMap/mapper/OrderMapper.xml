@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlMap.mapper.OrderMapper">
+
+	<!-- ORDERTBL 쿼리 -->
+	<!-- ORD_CANCEL = 0 이면 삭제 -->
+
+	<!-- 주문 전체 조회 -->
+	<select id="selectOrderAll" resultType="dto.OrderDTO">
+	
+		SELECT
+			*
+		FROM
+			ORDERTBL
+		WHERE
+			ORD_CANCEL = 1
+	
+	</select>
+	
+	<!-- 주문 조회(주문 번호) -->
+	<select id="selectOrderCode" parameterType="dto.OrderDTO" resultType="dto.OrderDTO">
+	
+		SELECT
+			*
+		FROM
+			ORDERTBL
+		WHERE
+			ORD_CODE = #{ord_code} AND ORD_CANCEL = 1
+	
+	</select>
+
+	<!-- 주문 조회(회원 번호) -->
+	<select id="selectOrderMemCode" parameterType="dto.OrderDTO" resultType="dto.OrderDTO">
+	
+		SELECT
+			*
+		FROM
+			ORDERTBL
+		WHERE
+			MEM_CODE = #{mem_code} AND ORD_CANCEL = 1
+	
+	</select>
+	
+	<!-- 주문 조회(강의 번호) -->
+	<select id="selectOrderClsCode" parameterType="dto.OrderDTO" resultType="dto.OrderDTO">
+	
+		SELECT
+			*
+		FROM
+			ORDERTBL
+		WHERE
+			CLS_CODE = #{cls_code} AND ORD_CANCEL = 1
+	
+	</select>
+	
+	<!-- 주문 -->
+	<insert id="insertOrder" parameterType="dto.OrderDTO">
+	
+		INSERT INTO 
+			ORDERTBL (MEM_CODE, CLS_CODE, ORD_DATE, ORD_TOTAL, ORD_CANCEL)
+		VALUES 
+			(#{mem_code}, #{cls_code}, NOW(), #{ord_total}, 1)
+	
+	</insert>
+		
+	<!-- 주문 취소 -->
+	<update id="deleteOrder" parameterType="dto.OrderDTO">
+	
+		UPDATE
+			ORDERTBL
+		SET
+			ORD_CANCEL = 0
+		WHERE
+			ORD_CODE = #{ord_code}
+	
+	</update>
+	
+</mapper>
