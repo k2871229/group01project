@@ -42,7 +42,7 @@
       margin: 30px auto; max-width: 550px; padding: 50px;" align="left">
       
         <div class="form-group">
-          <label for="first-name">아이디</label>
+          <label for="name">아이디</label>
           </div>
           <div class="form-group">
           <input type="text" name="mem_id" id="mem_id" style="border-radius: 5px; border: 1px solid gray;"
@@ -51,10 +51,10 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="last-name">비밀번호</label>
+          <label for="password">비밀번호</label>
         </div>
           <div class="form-group">
-          <input type="text" name="lastName" id="last-name" style="border-radius: 5px; border: 1px solid gray;"
+          <input type="password" name="mem_pw" id="mem_pw" style="border-radius: 5px; border: 1px solid gray;"
           	size=50 placeholder="8~20자의 영문, 숫자, 특수문자 조합"
           />
           </div>
@@ -64,7 +64,7 @@
           <label for="email">이름</label>
           </div>
           <div class="form-group">
-          <input type="email" name="email" id="email" style="border-radius: 5px; border: 1px solid gray;"
+          <input type="email" name="mem_name" id="mem_name" style="border-radius: 5px; border: 1px solid gray;"
           	size=50 placeholder="이름을 입력하세요."
           />
         </div>

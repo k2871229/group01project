@@ -28,8 +28,6 @@
 %>
 
 <%	
-	member.setMem_code(10);
-	
 
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();
 	SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -37,7 +35,6 @@
 	try{
 		
 		memberList = sqlSession.selectList("sqlMap.mapper.MemberMapper.selectMemberAll");
-		member = sqlSession.selectOne("sqlMap.mapper.MemberMapper.selectMemberCode", member);
 		
 	}catch(Exception e){
 		e.printStackTrace();
@@ -48,7 +45,6 @@
 %> 
 
 	<p><%= memberList.get(0).toString() %></p>
-	<p><%= member.toString() %></p>
 
 </body>
 </html>
