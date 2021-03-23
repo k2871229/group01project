@@ -27,4 +27,6 @@ public class ClassDTO {
 	private Time cls_time;
 	// 강의 기간
 	private Date cls_period;
+	// 강의 삭제 여부
+	private int cls_delete;
 }
