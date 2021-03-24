@@ -35,7 +35,6 @@
 	</div>
 	</div>
 	
-	<!-- 에러 (id pw 불일치 시)
 	<%
 				String error = request.getParameter("error");
 				if (error != null) {
@@ -44,7 +43,7 @@
 					out.println("</div>");
 				}
 			%>
-	-->
+
 	
 	
 	<div class="container" align="center">
@@ -63,7 +62,7 @@
 				</form>
 	<div class="notact my-4" align="left">
 	<p>아직 계정이 없으신가요? </p>
-	<button class="btn btn-lg btn-primary btn-block" href="./join.jsp" style="background-color: white; color: black; border: 2px solid black; padding:14px 5px">
+	<button class="btn btn-lg btn-primary btn-block" onclick="location.href='signup.jsp'" style="background-color: white; color: black; border: 2px solid black; padding:14px 5px">
 	회원가입</button>
 	</div>
 	

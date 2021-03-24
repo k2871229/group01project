@@ -6,15 +6,11 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String code = request.getParameter("mem_code");
 	String id = request.getParameter("mem_id");
 	String pw = request.getParameter("mem_pw");
 	String name = request.getParameter("mem_name");
 	String phone = request.getParameter("mem_phone");
 	String email = request.getParameter("mem_email");
-	String access = request.getParameter("mem_access");
-	String date = request.getParameter("mem_date");
-	String status = request.getParameter("mem_status");
 
 	Date currentDatetime = new Date(System.currentTimeMillis());
 	java.sql.Date sqlDate = new java.sql.Date(currentDatetime.getTime());
@@ -22,20 +18,17 @@
 %>
 
 <sql:setDataSource var="dataSource"
-	url="jdbc:mysql://localhost:3306/StudyingPDB?useSSL=false"
+	url="jdbc:mysql://localhost:3306/studyingp?useSSL=false"
 	driver="com.mysql.jdbc.Driver" user="root" password="1234" />
 
 <sql:update dataSource="${dataSource}" var="resultSet">
-   INSERT INTO member VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-   <sql:param value="<%=code%>" />
+   INSERT INTO membertbl VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
    <sql:param value="<%=id%>" />
 	<sql:param value="<%=pw%>" />
 	<sql:param value="<%=name%>" />
 	<sql:param value="<%=phone%>" />
 	<sql:param value="<%=email%>" />
-	<sql:param value="<%=access%>" />
-	<sql:param value="<%=date%>" />
-	<sql:param value="<%=status%>" />
+	<sql:param value="<%=timestamp%>" />
 </sql:update>
 
 <c:if test="${resultSet>=1}">

@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="Config.SqlSessionManager" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="org.apache.ibatis.session.SqlSession" %>
+<%@ page import="java.util.*" %>
+<%@ page import="dto.MemberDTO" %>
+<%@ page import="dto.BoardDTO" %>
+<%@ page import="dto.ClassDTO" %>
+<%@ page import="dto.OrderDTO" %>
 <html>
 <head>
 
@@ -20,6 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
     crossorigin="anonymous"/>
+
 </head>
 
 <body style="background-color: #f4f4f4;">
@@ -38,11 +47,12 @@
 	</div>
 	
 	<div class="container col-lg-12" align="center">
-      <form style="background-color: white; color: black; border: 1px solid black; border-radius: 15px;
+      <div style="background-color: white; color: black; border: 1px solid black; border-radius: 15px;
       margin: 30px auto; max-width: 550px; padding: 50px;" align="left">
-      
+        
+      <form method="POST" action="./addMember.jsp">
         <div class="form-group">
-          <label for="name">아이디</label>
+          <label for="mem_id">아이디</label>
           </div>
           <div class="form-group">
           <input type="text" name="mem_id" id="mem_id" style="border-radius: 5px; border: 1px solid gray;"
@@ -51,7 +61,7 @@
         </div>
         <br>
         <div class="form-group">
-          <label for="password">비밀번호</label>
+          <label for="mem_pw">비밀번호</label>
         </div>
           <div class="form-group">
           <input type="password" name="mem_pw" id="mem_pw" style="border-radius: 5px; border: 1px solid gray;"
@@ -61,45 +71,38 @@
         <br>
         
         <div class="form-group">
-          <label for="email">이름</label>
+          <label for="mem_name">이름</label>
           </div>
           <div class="form-group">
-          <input type="email" name="mem_name" id="mem_name" style="border-radius: 5px; border: 1px solid gray;"
+          <input type="text" name="mem_name" id="mem_name" style="border-radius: 5px; border: 1px solid gray;"
           	size=50 placeholder="이름을 입력하세요."
           />
         </div>
         <br>
         <div class="form-group">
-          <label for="password">전화번호</label>
+          <label for="mem_phone">전화번호</label>
           </div>
           <div class="form-group">
-          <input type="password" name="password" id="password" style="border-radius: 5px; border: 1px solid gray;"
+          <input type="text" name="mem_phone" id="mem_phone" style="border-radius: 5px; border: 1px solid gray;"
           	size=50 placeholder="숫자만 입력하세요."
           />
         </div>
         <br>
         <div class="form-group">
-          <label for="password2">이메일</label>
+          <label for="mem_email">이메일</label>
         </div>
         <div class="form-group">
-          <input type="password" name="pasword2" id="password2" style="border-radius: 5px; border: 1px solid gray;"
+          <input type="email" name="mem_email" id="mem_email" style="border-radius: 5px; border: 1px solid gray;"
           	size=50 placeholder="이메일을 입력하세요."
           />
         </div>
+        
         <br>
-        <div class="form-group">
-          <label for="password2">주소</label>
-        </div>
-        <div class="form-group">
-          <input type="password" name="pasword2" id="password2" style="border-radius: 5px; border: 1px solid gray;"
-          	size=50 placeholder="주소를 입력하세요."
-          />
-        </div>
-        <br>
-        <button class="btn btn-lg btn-primary btn-block" href="./join.jsp" style=" border: 2px solid; padding:14px 5px">
+        <button class="btn btn-lg btn-primary btn-block" id="submit" 
+        onclick="location.href='signup.jsp'" style=" border: 2px solid; padding:14px 5px">
 		가입하기</button>
-        <p class="space"></p>
-      </form>
+		</form>
+      </div>
     </div>
   </div>
 </body>
