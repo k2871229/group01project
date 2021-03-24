@@ -3,8 +3,13 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.ClassDTO" %>
 <%@ page import="dto.MemberDTO" %>
+<%@ page import="dao.MemberDAO" %>
+<%@ page import="dao.MemberDAOImpl" %>
 <%@ page import="dto.OrderDTO" %>
+<%@ page import="dao.OrderDAO" %>
 <%@ page import="dao.OrderDAOImpl" %>
+<%@ page import="dao.ClassDAO" %>
+<%@ page import="dao.ClassDAOImpl" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,9 +32,34 @@
     crossorigin="anonymous" />
     
     <%
-    
-    	String cartId = session.getId();
-    
+    	// 현재 세션에 있는 cls_code를 받아옴
+    	session = request.getSession();
+    	int clsCode;
+    	ClassDAOImpl clsDaoImpl = new ClassDAOImpl();
+    	ClassDTO clsDto = new ClassDTO();
+    	ClassDTO selectedCls = new ClassDTO();
+    	int memCode;
+    	MemberDAOImpl memDaoImpl = new MemberDAOImpl();
+    	MemberDTO memDto = new MemberDTO();
+    	MemberDTO selectedMem = new MemberDTO();
+    	
+    	// getAttribute로 받아오는 값이 있어야 동작
+    	if(session.getAttribute("AddedClsCode") != null){
+    		clsCode = Integer.valueOf((String)session.getAttribute("AddedClsCode"));
+        	
+    		// ClassDTO 인스턴스를 만들어서 cls_code를 할당
+        	clsDto.setCls_code(clsCode);
+        	// 제대로 cls_code가 들어갔는지 체크
+        	//System.out.println(clsDto.toString());
+        	// cls_code를 이용해 ClassMapper로 부터 class 데이터를 받아옴
+        	selectedCls = clsDaoImpl.selectClassOne(clsDto);
+        	//System.out.println(selectedCls.toString());
+        	
+        	memCode = Integer.valueOf((String)session.getAttribute("AddedMemCode"));
+        	memDto.setMem_code(memCode);
+        	selectedMem = memDaoImpl.selectMemberOne(memDto);
+    	}
+
     %>
 </head>
 <body>
@@ -95,7 +125,7 @@
 					</table>
 					<div class="px-5 mx-5" style="border-top: 2px solid silver !important;">
 						<div class="px-5 pt-4 pb-3 text-center text-nowrap" style="font-size: 15px;">계좌 입금액</div>
-						<div class="px-5 pt-3 pb-4 text-center text-nowrap text-danger" style="font-size: 30px; font-weight: bold;">200,000원</div>
+						<div class="px-5 pt-3 pb-4 text-center text-nowrap text-danger" style="font-size: 30px; font-weight: bold;"><% out.print(String.valueOf(selectedCls.getCls_price()) + "원"); %></div>
 					</div>
 				</div>
 				<div class="my-2 py-2" style="border-top: 1px solid silver;">일주일 내에 입금 확인이 되지 않으면 주문이 자동 취소됩니다. 입금인 이름과 수강생 이름은 동일해야 합니다.</div>

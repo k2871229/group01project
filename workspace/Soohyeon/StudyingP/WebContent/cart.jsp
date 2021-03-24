@@ -1,10 +1,14 @@
+<%@page import="dao.ClassDAOImpl"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="dto.ClassDTO" %>
 <%@ page import="dto.MemberDTO" %>
 <%@ page import="dto.OrderDTO" %>
+<%@ page import="dao.OrderDAO" %>
 <%@ page import="dao.OrderDAOImpl" %>
+<%@ page import="dao.ClassDAO" %>
+<%@ page import="dao.ClassDAOImpl" %>
 
 <!DOCTYPE html>
 <html>
@@ -27,10 +31,28 @@
     crossorigin="anonymous" />
     
     <%
-    
-    	String cartId = session.getId();
-    
+    	// 현재 세션에 있는 cls_code를 받아옴
+    	session = request.getSession();
+    	int clsCode;
+    	ClassDAOImpl clsDaoImpl = new ClassDAOImpl();
+    	ClassDTO clsDto = new ClassDTO();
+    	ClassDTO selectedCls = new ClassDTO();
+    	
+    	// getAttribute로 받아오는 값이 있어야 동작
+    	if(session.getAttribute("AddedClsCode") != null){
+    		clsCode = Integer.valueOf((String)session.getAttribute("AddedClsCode"));
+        	
+    		// ClassDTO 인스턴스를 만들어서 cls_code를 할당
+        	clsDto.setCls_code(clsCode);
+        	// 제대로 cls_code가 들어갔는지 체크
+        	//System.out.println(clsDto.toString());
+        	// cls_code를 이용해 ClassMapper로 부터 class 데이터를 받아옴
+        	selectedCls = clsDaoImpl.selectClassOne(clsDto);
+        	//System.out.println(selectedCls.toString());
+    	}
+
     %>
+    
 </head>
 <script type="text/javascript">
 function goOrdersheet(){
@@ -39,7 +61,16 @@ function goOrdersheet(){
 	itemForm.action = "order";
 	itemForm.submit();
 }
+
+function goOrderdelete(){
+	var itemForm = document.item;
+	itemForm.method = "post";
+	itemForm.action = "deleteCartCheck";
+	itemForm.submit();
+}
+
 </script>
+
 <body>
 	<jsp:include page="menu.jsp"/>
 	<div style="background: white;">
@@ -79,16 +110,16 @@ function goOrdersheet(){
 						</tr>
 					</thead>
 					<tbody>
-					<form name="item" method="post">
+						<form name="item" method="post">
 						<tr>
 							<th scope="row" class="align-middle"><input type="checkbox"></th>
 							<th class="align-middle text-center">강의 이미지</th>
-							<th class="align-middle text-center">요알못도 쉽게 따라 할 수 있는 쿠킹 클래스</th>
-							<th class="align-middle text-center">400,000원</th>
+							<th class="align-middle text-center"><% out.print(selectedCls.getCls_name()); %></th>
+							<th class="align-middle text-center"><% out.print(String.valueOf(selectedCls.getCls_price()) + "원"); %></th>
 							<th>
 								<div class="d-flex flex-column">
 									<div class="py-2 px-5 my-1 text-white btn btn-secondary" align="center" style="border-radius: 10px;" onclick="goOrdersheet()">주문하기</div>
-									<div class="py-2 px-5 my-1 text-black btn btn-light" align="center" style="border-radius: 10px;">삭제</div>
+									<div class="py-2 px-5 my-1 text-black btn btn-light" align="center" style="border-radius: 10px;" onclick="goOrderdelete()">삭제</div>
 								</div>
 							</th>
 						</tr>
@@ -100,7 +131,7 @@ function goOrdersheet(){
 							<th></th>
 							<th></th>
 							<th>
-								<div class="text-primary text-center" style="font-size: 20px !important;">합계: 400,000원</div>
+								<div class="text-primary text-center" style="font-size: 20px !important;"><% out.print(String.valueOf(selectedCls.getCls_price()) + "원"); %></div>
 							</th>
 						</tr>
 					</tbody>
@@ -120,8 +151,8 @@ function goOrdersheet(){
 					</thead>
 					<tbody>
 						<tr>
-							<th class="py-4 text-center" style="border: 2px solid silver; font-size: 25px;">400,000원</th>
-							<th class="py-4 text-center text-primary" style="border: 2px solid silver; font-size: 25px;">400,000원</th>
+							<th class="py-4 text-center" style="border: 2px solid silver; font-size: 25px;"><% out.print(String.valueOf(selectedCls.getCls_price()) + "원"); %></th>
+							<th class="py-4 text-center text-primary" style="border: 2px solid silver; font-size: 25px;"><% out.print(String.valueOf(selectedCls.getCls_price()) + "원"); %></th>
 						</tr>
 					</tbody>
 				</table>
@@ -135,10 +166,10 @@ function goOrdersheet(){
 					<table align="center">
 						<tr>
 							<td>
-								<a href="#" class="btn btn-primary text-white py-3 px-5 mr-3">전체상품 주문</a>
+								<a href="#" class="btn btn-primary text-white py-3 px-5 mr-3" onclick="goOrdersheet()">전체상품 주문</a>
 							</td>
 							<td>
-								<a href="#" class="btn btn-secondary text-white py-3 px-5 ml-3">선택상품 주문</a>
+								<a href="#" class="btn btn-secondary text-white py-3 px-5 ml-3" onclick="goOrdersheet()">선택상품 주문</a>
 							</td>
 						</tr>
 					</table>
