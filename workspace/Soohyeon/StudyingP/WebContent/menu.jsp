@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+    
+<script type="text/javascript">
+    function goCart(){
+    	var menu = document.cart;
+    	menu.method="post";
+    	menu.action = "cart";
+    	menu.submit();
+    }
+</script>
   <!-- 네비바 -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
@@ -52,7 +61,10 @@
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">회원 정보 수정</a>
               <br>
-              <a class="dropdown-item" href="#">장바구니</a>
+              <form name="cart" method="post" >
+              <a class="dropdown-item" onclick="goCart()">장바구니</a>
+              </form>
+              
               <a class="dropdown-item" href="#">수강 정보</a>
             </div>
           </li>

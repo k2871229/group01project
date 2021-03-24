@@ -32,6 +32,14 @@
     
     %>
 </head>
+<script type="text/javascript">
+function goOrdersheet(){
+	var itemForm = document.item;
+	itemForm.method = "post";
+	itemForm.action = "order";
+	itemForm.submit();
+}
+</script>
 <body>
 	<jsp:include page="menu.jsp"/>
 	<div style="background: white;">
@@ -71,6 +79,7 @@
 						</tr>
 					</thead>
 					<tbody>
+					<form name="item" method="post">
 						<tr>
 							<th scope="row" class="align-middle"><input type="checkbox"></th>
 							<th class="align-middle text-center">강의 이미지</th>
@@ -78,11 +87,12 @@
 							<th class="align-middle text-center">400,000원</th>
 							<th>
 								<div class="d-flex flex-column">
-									<div class="py-2 px-5 my-1 text-white btn btn-secondary" align="center" style="border-radius: 10px;">주문하기</div>
+									<div class="py-2 px-5 my-1 text-white btn btn-secondary" align="center" style="border-radius: 10px;" onclick="goOrdersheet()">주문하기</div>
 									<div class="py-2 px-5 my-1 text-black btn btn-light" align="center" style="border-radius: 10px;">삭제</div>
 								</div>
 							</th>
 						</tr>
+						</form>
 						
 						<tr style="border-top: 2px solid silver !important; border-bottom: 2px solid silver !important;">
 							<th></th>

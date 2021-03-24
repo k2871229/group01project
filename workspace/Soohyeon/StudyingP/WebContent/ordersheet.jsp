@@ -32,6 +32,14 @@
     
     %>
 </head>
+<script type="text/javascript">
+function goOrderCompleted() {
+	var completedForm = document.completed;
+	completedForm.method = "post";
+	completedForm.action = "OrderCompleted"
+	completedForm.submit();
+}
+</script>
 <body>
 	<jsp:include page="menu.jsp"/>
 	<div style="background: white;">
@@ -151,11 +159,13 @@
 							<th></th>
 						</tr>
 					</table>
-					<div class="px-5 mx-5" style="border-top: 2px solid silver !important">
-						<div class="px-5 pt-3 pb-2 text-center text-nowrap" style="font-size: 15px;">최종 결제 금액</div>
-						<div class="px-5 pt-3 pb-4 text-center text-nowrap text-danger" style="font-size: 30px; font-weight: bold;">200,000원</div>
-						<div class="btn btn-danger text-white btn-block">구매하기</div>
-					</div>
+					<form name="completed" method="post">
+						<div class="px-5 mx-5" style="border-top: 2px solid silver !important">
+							<div class="px-5 pt-3 pb-2 text-center text-nowrap" style="font-size: 15px;">최종 결제 금액</div>
+							<div class="px-5 pt-3 pb-4 text-center text-nowrap text-danger" style="font-size: 30px; font-weight: bold;">200,000원</div>
+							<div class="btn btn-danger text-white btn-block" onclick="goOrderCompleted()">구매하기</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

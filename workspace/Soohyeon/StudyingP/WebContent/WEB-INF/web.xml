@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>StudyingP</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+   <servlet-name>FrontController</servlet-name><!-- 서블릿 클래스명 -->
+   <servlet-class>controller.FrontController</servlet-class>
+   <!-- 서블릿 풀패키지 경로 -->  
+  </servlet>
+  <servlet-mapping>
+   <servlet-name>FrontController</servlet-name>
+   <url-pattern>*.do</url-pattern><!-- *.do매핑주소가 실행되면 net.abc.controller 패키지의
+   MFrontController 서블릿이 실행됨. -->
+  </servlet-mapping>
+</web-app>
