@@ -105,7 +105,7 @@ function goOrderCompleted() {
 						<tr>
 							<th scope="col" class="text-center">상품명</th>
 							<th scope="col" class="text-center">수강기간</th>
-							<th scope="col" class="text-center">판매자</th>
+							<th scope="col" class="text-center">판매금액</th>
 						</tr>
 					</thead>
 					<tbody>

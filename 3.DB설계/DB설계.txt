@@ -17,6 +17,7 @@ CLS_NAME -강의명
 CLS_PRICE -가격
 CLS_TIME -강의재생시간
 CLS_PERIOD -강의기간
+CLS_DELETE -강의삭제여부
 
 @주문 ORDER
 ORD_CODE -주문번호 (PK)
@@ -25,9 +26,11 @@ ORD_CODE -주문번호 (PK)
 ORD_DATE -주문날짜
 ORD_TOTAL -주문금액
 ORD_CANCEL -주문취소 여부
+ORD_CHECK -결제확인
+ORD_CHKDATE -결제확인날짜
 
 @게시판 BOARD
-BRD_NUM -글번호 (PK)
+BRD_CODE -글번호 (PK)
 BRD_TITLE -글제목
 BRD_HIT -조회수
 BRD_DATE -작성일
@@ -37,6 +40,13 @@ BRD_CONTENT -글내용
 BRD_CATEGORY -말머리 (공지 0/리뷰 1/질답 2 /자유 3)
 BRD_DELETE -삭제여부
 BRD_RATING -강의평점 (5아주만족~1불만족)
+
+@댓글 COMMENT
+CMT_CODE -댓글번호 (PK)
+BRD_CODE -게시글번호 (FK)
+MEM_CODE -회원번호 (FK)
+CMT_CONTENT -댓글내용
+CMT_DATE -댓글작성일
 
 ++진행상황따라 추가
 BRD_MODIFIEDDATE -수정일
