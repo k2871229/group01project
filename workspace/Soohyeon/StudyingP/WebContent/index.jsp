@@ -28,7 +28,7 @@
 %>
 
 <%	
-	member.setMem_code(10);
+	member.setMem_code(1);
 	
 
 	SqlSessionFactory sqlSessionFactory = SqlSessionManager.getSqlSession();

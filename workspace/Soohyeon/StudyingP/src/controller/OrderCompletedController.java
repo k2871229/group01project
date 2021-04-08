@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.ClassDAOImpl;
-import dao.MemberDAOImpl;
+//import dao.ClassDAOImpl;
+//import dao.MemberDAOImpl;
 import dao.OrderDAOImpl;
 import dto.ClassDTO;
 import dto.MemberDTO;
@@ -22,14 +22,14 @@ import dto.OrderDTO;
 public class OrderCompletedController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ClassDAOImpl clsDao = new ClassDAOImpl();
-		MemberDAOImpl memDao = new MemberDAOImpl();
+//		ClassDAOImpl clsDao = new ClassDAOImpl();
+//		MemberDAOImpl memDao = new MemberDAOImpl();
 		OrderDAOImpl ordDao = new OrderDAOImpl();
 		ClassDTO clsDto = new ClassDTO();
 		MemberDTO memDto = new MemberDTO();
 		OrderDTO ordDto = new OrderDTO();
 		
-		// ¼¼¼Ç¿¡ µé¾îÀÖ´Â °­ÀÇ¹øÈ£, È¸¿ø¹øÈ£ ¹Þ¾Æ¿À±â
+		// ï¿½ï¿½ï¿½Ç¿ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½È£, È¸ï¿½ï¿½ï¿½ï¿½È£ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
 		HttpSession session = req.getSession();
 		int clsCode = Integer.valueOf((String)session.getAttribute("AddedClsCode"));
 		int memCode = Integer.valueOf((String)session.getAttribute("AddedMemCode"));
@@ -37,25 +37,25 @@ public class OrderCompletedController extends HttpServlet {
 		memDto.setMem_code(memCode);
 		
 		
-		// °­ÀÇ¹øÈ£, È¸¿ø¹øÈ£¸¦ ÀÌ¿ëÇØ db·ÎºÎÅÍ µ¥ÀÌÅÍ¸¦ ¹Þ¾Æ¿È
+		// ï¿½ï¿½ï¿½Ç¹ï¿½È£, È¸ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ dbï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Þ¾Æ¿ï¿½
 		try {
-			clsDto = clsDao.selectClassOne(clsDto);
-			memDto = memDao.selectMemberOne(memDto);
+//			clsDto = clsDao.selectClassOne(clsDto);
+//			memDto = memDao.selectMemberOne(memDto);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		// db¿¡¼­ ¹Þ¾Æ¿Â °ªÀ» ORDERTBL¿¡ ³ÖÀ» ÀÓ½Ã º¯¼ö ordDto¿¡ ÇÒ´ç
+		// dbï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ORDERTBLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ordDtoï¿½ï¿½ ï¿½Ò´ï¿½
 		ordDto.setCls_code(clsDto.getCls_code());
 		ordDto.setMem_code(memDto.getMem_code());
 		ordDto.setOrd_total(clsDto.getCls_price());
 		
-		// ÀÓ½Ã º¯¼ö ordDto¸¦ ÀÌ¿ëÇØ ORDERTBL¿¡ INSERT
+		// ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ordDtoï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ORDERTBLï¿½ï¿½ INSERT
 		try {
 			int result = ordDao.insertOrder(ordDto);
 			
-			// Á¤»óÀûÀ¸·Î ½ÇÇàµÇ¾ú´ÂÁö È®ÀÎ
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 			System.out.println(result);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

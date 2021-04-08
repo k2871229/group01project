@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlMap.mapper.MemberMapper">
+
+	<!-- MEMBERTBL 쿼리 -->
+	<!-- MEM_STATUS = 0 이면 탈퇴 -->
+	
+	<!-- (활동)회원 전체 조회 -->
+	<select id="selectMem" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL
+		WHERE
+			MEM_STATUS = 1
+
+	</select>
+	
+	<!-- 탈퇴포함 전체 검색 -->
+	<select id="selectMemAll" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL
+	
+	</select>
+	
+	<!-- 탈퇴멤버 조회 -->
+	<select id="selectMemDel" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL 
+		WHERE 
+			MEM_STATUS = 0
+	
+	</select>
+	
+	<!-- 회원이름(강사) 조회 -->
+	<select id="selectMemName" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL 
+		WHERE 
+			MEM_NAME = #{mem_name} AND MEM_STATUS = 1
+	
+	</select>
+	
+	<!-- 회원코드 검색 -->
+	<select id="selectMemCode" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL 
+		WHERE 
+			MEM_CODE = #{mem_code} AND MEM_STATUS = 1
+	
+	</select>
+	
+	<!-- 회원아이디(강사) 조회 -->
+	<select id="selectMemId" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL 
+		WHERE 
+			MEM_ID = #{mem_id} AND MEM_STATUS = 1
+	
+	</select>
+
+	<!-- 회원 권한별 검색 -->
+	<select id="selectMemAccess" parameterType="dto.MemberDTO" resultType="dto.MemberDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			MEMBERTBL 
+		WHERE 
+			MEM_STATUS = #{mem_status}
+	
+	</select>
+
+	
+	<!-- 회원 가입 -->
+	<insert id="insertMem" parameterType="dto.MemberDTO">
+	
+		INSERT INTO 
+			MEMBERTBL ( MEM_ID, MEM_PW, MEM_NAME, MEM_PHONE, MEM_EMAIL, MEM_ACCESS, MEM_DATE, MEM_STATUS )
+		VALUES 
+			( #{mem_id}, #{mem_pw}, #{mem_name}, #{mem_phone}, #{mem_email}, 2, NOW(), 1 )
+	
+	</insert>
+
+	<!-- 회원 탈퇴 -->
+	<delete id="deleteMem" parameterType="dto.MemberDTO">
+	
+		UPDATE 
+			MEMBERTBL 
+		SET 
+			MEM_STATUS = 0
+		WHERE 
+			MEM_CODE = #{mem_code}
+	
+	</delete>
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateMem" parameterType="dto.MemberDTO">
+	
+		UPDATE 
+			MEMBERTBL 
+		SET 
+			MEM_PW = #{mem_pw}, 
+			MEM_NAME = #{mem_name}, 
+			MEM_PHONE = #{mem_phone}, 
+			MEM_EMAIL = #{mem_email}
+		WHERE 
+			MEM_CODE = #{mem_code}
+	
+	</update>
+		
+	<!-- 회원 권한 변경 -->
+	<update id="updateMemAccess" parameterType="dto.MemberDTO">
+	
+		UPDATE 
+			MEMBERTBL 
+		SET 
+			MEM_ACCESS = #{mem_access}
+		WHERE 
+			MEM_CODE = #{mem_code}
+	
+	</update>
+
+	</mapper>

@@ -6,12 +6,23 @@ import dto.OrderDTO;
 
 public interface OrderDAO {
 
-	public List<OrderDTO> selectOrderList() throws Exception; // 주문 전체 조회
-	public List<OrderDTO> selectOrderList(OrderDTO orderDto) throws Exception; // 주문 전체 조회 조건 포함
-	public OrderDTO selectOrderOne(OrderDTO orderDto) throws Exception; // 주문 1개 조회
-	public void insertOrder(OrderDTO orderDto) throws Exception; // 등록
-	public void updateOrder(OrderDTO orderDto) throws Exception; // 수정
-	public void deleteOrder(OrderDTO orderDto) throws Exception; // 삭제
+	// 활성화된 주문조회
+	public List<OrderDTO> selectOrd(OrderDTO orderDto);
+	// 취소포함 전체 주문조회
+	public List<OrderDTO> selectOrdAll(OrderDTO orderDto);
+	// 취소 주문조회
+	public List<OrderDTO> selectOrdDel(OrderDTO orderDto);
+	// 주문조회(회원번호)
+	public List<OrderDTO> selectOrdMemCode(OrderDTO orderDto);
+	// 주문조회(강의번호)
+	public List<OrderDTO> selectOrdClsCode(OrderDTO orderDto);
+	// 주문조회(결제확인 체크)
+	public OrderDTO selectOrdCheck(OrderDTO orderDto);
 	
+	// 결제완료
+	public OrderDTO updateOrdCheck(OrderDTO orderDto);
+	// 주문
+	public void insertOrd(OrderDTO orderDto);
+	// 주문취소
+	public void deleteOrd(OrderDTO orderDto);	
 }
-	

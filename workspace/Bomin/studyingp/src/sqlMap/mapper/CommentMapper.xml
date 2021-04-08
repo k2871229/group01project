@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlMap.mapper.CommentMapper">
+
+	<!-- COMMNETTBL 쿼리 -->
+	
+	<!-- 댓글 조회 (회원코드) -->
+	<select id="selectCmtInst" parameterType="dto.MemberDTO" resultType="dto.CommentDTO">
+	
+		SELECT 
+			* 
+		FROM 
+			COMMENTTBL 
+		WHERE 
+			MEM_CODE = #{mem_code} AND CMT_DELETE = 1
+	
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertCmt" parameterType="dto.CommentDTO">
+	
+		INSERT INTO
+			COMMENTTBL (BRD_CODE, MEM_CODE, CMT_CONTENT, CMT_DATE, CMT_DELETE) 
+		VALUES
+			(#{brd_code}, #{mem_code}, #{cmt_content}, NOW(), 1)
+	
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateCmt" parameterType="dto.CommentDTO">
+	
+		UPDATE 
+			COMMENTTBL
+		SET
+			CMT_CONTENT = #{cmt_content}
+		WHERE
+			CMT_CODE = #{Cmt_code}
+	
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="deleteCmt" parameterType="dto.CommentDTO">
+	
+		UPDATE
+			COMMENTTBL
+		SET
+			CMT_DELETE = 0
+		WHERE
+			CMT_CODE = #{Cmt_code}
+	
+	</update>
+	
+
+</mapper>

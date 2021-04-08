@@ -14,9 +14,9 @@
 			<transactionManager type="JDBC"/>
 			<dataSource type="POOLED">
 				<property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-				<property name="url" value="jdbc:mysql://localhost:3306/board"/>
+				<property name="url" value="jdbc:mysql://localhost:3306/studyingp"/>
 				<property name="username" value="root"/>
-				<property name="password" value="mi58521651"/>
+				<property name="password" value="1234"/>
 			</dataSource>
 		</environment>
 	</environments>

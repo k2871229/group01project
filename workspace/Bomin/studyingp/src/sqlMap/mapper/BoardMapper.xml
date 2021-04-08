@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sqlMap.mapper.BoardMapper">
+
+	<!-- BOARDTBL 쿼리 -->
+	<!-- BRD_DELETE = 0 이면 삭제 -->
+
+	<!-- 개시된 게시글 전체 조회 -->
+	<select id="selectBrd" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_DELETE = 1
+	
+	</select>
+		
+	<!-- 삭제포함 게시글 전체 조회 -->
+	<select id="selectBrdAll" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+	
+	</select>
+	
+	<!-- 삭제된 게시글 조회 -->
+	<select id="selectBrdDel" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_DELETE = 0
+	
+	</select>
+	
+	<!-- 게시글 조회(글번호) -->
+	<select id="selectBrdCode" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_CODE = #{brd_code} AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(글제목) -->
+	<select id="selectBrdTitle" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_TITLE LIKE CONCAT('%', #{brd_title}, '%') AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(내용) -->
+	<select id="selectBrdContent" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_CONTENT LIKE CONCAT('%', #{brd_content}, '%') AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(강의번호) -->
+	<select id="selectBrdClsCode" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			CLS_CODE = #{cls_code} AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(말머리) -->
+	<select id="selectBrdCategory" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_CATEGORY = #{brd_category} AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(회원번호) -->
+	<select id="selectBrdMemCode" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			MEM_CODE = #{mem_code} AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(평점) -->
+	<select id="selectBrdRating" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+		WHERE
+			BRD_RATING = #{brd_rating} AND BRD_DELETE = 1
+	
+	</select>
+	
+	<!-- 게시글 조회(댓글포함) -->
+	<select id="selectBrdCmt" parameterType="dto.BoardDTO" resultType="dto.BoardDTO">
+	
+		SELECT
+			*
+		FROM
+			BOARDTBL
+	INNER JOIN
+			COMMENTTBL
+		ON
+			BOARDTBL.BRD_CODE = COMMENTTBL.BRD_CODE		
+		WHERE
+			COMMENTTBL.CMT_CONTENT LIKE CONCAT('%', #{cmt_content}, '%') AND BOARDTBL.BRD_DELETE = 1
+		
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertBrd" parameterType="dto.BoardDTO">
+	
+		INSERT INTO
+			BOARDTBL (BRD_TITLE, BRD_HIT, BRD_DATE, BRD_CONTENT, MEM_CODE, CLS_CODE, BRD_CATEGORY, BRD_DELETE, BRD_RATING)
+		VALUES
+			(#{brd_title}, 0, NOW(), #{brd_content}, #{mem_code}, #{cls_code}, #{brd_category}, 1, #{brd_rating})
+	
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBrd" parameterType="dto.BoardDTO">
+	
+		UPDATE
+			BOARDTBL
+		SET
+			BRD_TITLE = #{brd_title},
+			BRD_HIT = #{brd_hit},
+			BRD_CONTENT = #{brd_content},
+			CLS_CODE = #{cls_code},
+			BRD_CATEGORY = #{brd_category},
+			BRD_RATING = #{brd_rating}
+		WHERE
+			BRD_CODE = #{brd_code}
+	
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<update id="deleteBrd" parameterType="dto.BoardDTO">
+	
+		UPDATE
+			BOARDTBL
+		SET
+			BRD_DELETE = 0
+		WHERE
+			BRD_CODE = #{brd_code}
+	
+	</update>
+
+</mapper>
